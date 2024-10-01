@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% block media %}{% endblock %}
+	<style>
+		body {
+			background-color: lightgray;
+			margin: 0;
+		}
+		main {
+			background-color: white;
+			max-width: 700px;
+			margin: 0 auto 0 auto;
+			padding: 15px;
+		}
+	</style>
+</head>
+<body>
+<main>
+	{% block main %}{% endblock %}
+</main>
+</body>
+</html>

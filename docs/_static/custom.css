@@ -1,0 +1,8 @@
+div.document {
+	width: 100%;
+	max-width: 1400px;
+}
+
+div.body {
+	max-width: 1260px;
+}

@@ -1,0 +1,14 @@
+{% extends 'example/frame.html' %}
+
+{% block media %}
+	{{ form.media }}
+{% endblock %}
+
+{% block main %}
+	<h1>Create Collection</h1>
+	<form method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit">
+	</form>
+{% endblock %}
