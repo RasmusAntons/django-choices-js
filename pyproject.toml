@@ -25,6 +25,11 @@ dependencies = [
     "django >= 5.1, < 6",
 ]
 
+[project.optional-dependencies]
+docs = [
+    "sphinx >= 8, < 9"
+]
+
 [project.urls]
 Source = "https://github.com/RasmusAntons/django-choices-js/"
 Documentation = "https://django-choices-js.3po.ch"
