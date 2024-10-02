@@ -10,7 +10,6 @@ Install django-choices-js:
 
 .. code-block:: bash
 
-    # work in progres: installation isn't actually possible yet
     pip install git+https://github.com/RasmusAntons/django-choices-js.git
 
 Add ``django_choices_js`` to your ``INSTALLED_APPS``.

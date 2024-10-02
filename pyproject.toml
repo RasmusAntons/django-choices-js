@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+include = [
+    "django_choices_js"
+]
+
+[project]
+name = "django-choices-js"
+description = "Widgets and autocompletion endpoints for Choices.js in Django."
+version = "0.0.1"
+authors = [
+    { name="Rasmus Antons", email="mail@rasmusantons.de" },
+]
+readme = "README.rst"
+license = { file="LICENSE" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "django >= 5.1, < 6",
+]
+
+[project.urls]
+Source = "https://github.com/RasmusAntons/django-choices-js/"
+Documentation = "https://django-choices-js.3po.ch"
+Issues = "https://github.com/RasmusAntons/django-choices-js/issues"
