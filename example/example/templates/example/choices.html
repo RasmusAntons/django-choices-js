@@ -5,13 +5,20 @@
 {% endblock %}
 
 {% block main %}
-	<h1>Simple Form</h1>
+	<h1>django-choices-js</h1>
+	<p>
+		This is an example application for django-choices-js.
+		<br>
+		<a href="https://github.com/RasmusAntons/django-choices-js">GitHub</a> &#183;
+		<a href="https://django-choices-js.3po.ch/docs/">documentation</a>
+	</p>
+	<h2>Simple Form</h2>
 	<form method="post">
 		{% csrf_token %}
 		{{ form.as_p }}
 		<input type="submit">
 	</form>
-	<h1>Model Forms</h1>
+	<h2>Model Forms</h2>
 	{% for collection in collections %}
 		<h2><a href="{% url 'update_collection' collection.pk %}">{{ collection.name }}</a></h2>
 		<b>{{ collection.primary.name }}</b>

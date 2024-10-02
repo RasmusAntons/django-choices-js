@@ -17,6 +17,8 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
 
 from . import views
 
@@ -26,4 +28,4 @@ urlpatterns = [
     path("update_collection/<pk>", views.CollectionUpdateView.as_view(), name="update_collection"),
     path("admin/", admin.site.urls),
     path("django_choices_js/", include("django_choices_js.urls")),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

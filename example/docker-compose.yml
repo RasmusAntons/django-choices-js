@@ -1,0 +1,8 @@
+services:
+  example:
+    restart: always
+    build:
+      context: ..
+      dockerfile: example/Dockerfile
+    ports:
+      - "8000:8000"
