@@ -10,7 +10,7 @@ Install django-choices-js:
 
 .. code-block:: bash
 
-    pip install git+https://github.com/RasmusAntons/django-choices-js.git
+    pip install git+https://git.3po.ch/owl/django-choices-js.git
 
 Add ``django_choices_js`` to your ``INSTALLED_APPS``.
 
