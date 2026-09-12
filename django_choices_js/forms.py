@@ -64,11 +64,12 @@ class ChoicesJsModelMixin(ChoicesJsMixin):
         super().__init__(choices_opts, *args, **kwargs)
         self.autocomplete_name = autocomplete_name
 
-
     def build_attrs(self, base_attrs, extra_attrs=None):
         attrs = super().build_attrs(base_attrs, extra_attrs=extra_attrs)
         if isinstance(self.choices, django.forms.models.ModelChoiceIterator):
             model = self.choices.queryset.model
+            if not hasattr(model, '__django_choices_js__'):
+                raise InvalidAutocomplete(f'no autocomplete registered for {model.__name__}')
             path = autocomplete_path_for_model(model, self.autocomplete_name)
             path_config: Optional[ChoicesAutocompletePathConfig] = model.__django_choices_js__.get(path)
             if path_config is None:
