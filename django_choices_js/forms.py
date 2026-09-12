@@ -1,6 +1,10 @@
 import json
+from typing import Optional
 
 import django.forms
+
+from django_choices_js.models import ChoicesAutocompletePathConfig, autocomplete_path_for_model
+
 
 class ChoicesJsMixin:
     """
@@ -19,7 +23,8 @@ class ChoicesJsMixin:
 
     def build_attrs(self, base_attrs, extra_attrs=None):
         attrs = super().build_attrs(base_attrs, extra_attrs=extra_attrs)
-        attrs['class'] = ' '.join(attrs.get('class', '').split(' ') + ['choices-js-field'])
+        class_attr = attrs.get('class')
+        attrs['class'] = ' '.join((class_attr.split(' ') if class_attr else []) + ['choices-js-field'])
         attrs['data-choices-js'] = json.dumps(self.choices_opts) if self.choices_opts else {}
         return attrs
 
@@ -51,19 +56,27 @@ class ChoicesJsSelectMultiple(ChoicesJsMixin, django.forms.SelectMultiple):
 
 
 class ChoicesJsModelMixin(ChoicesJsMixin):
-    def __init__(self, choices_opts=None, *args, **kwargs):
+    def __init__(self, choices_opts=None, autocomplete_name=None, *args, **kwargs):
         if choices_opts is None:
             choices_opts = {}
         if 'searchChoices' not in choices_opts:
             choices_opts['searchChoices'] = False
         super().__init__(choices_opts, *args, **kwargs)
+        self.autocomplete_name = autocomplete_name
+
 
     def build_attrs(self, base_attrs, extra_attrs=None):
         attrs = super().build_attrs(base_attrs, extra_attrs=extra_attrs)
         if isinstance(self.choices, django.forms.models.ModelChoiceIterator):
             model = self.choices.queryset.model
-            if model is not None and hasattr(model, 'django_choices_js_autocomplete_path'):
-                attrs['data-choices-js-autocomplete'] = model.django_choices_js_autocomplete_path
+            path = autocomplete_path_for_model(model, self.autocomplete_name)
+            path_config: Optional[ChoicesAutocompletePathConfig] = model.__django_choices_js__.get(path)
+            if path_config is None:
+                if self.autocomplete_name is None:
+                    raise InvalidAutocomplete(f'no default autocomplete registered for {model.__name__}')
+                else:
+                    raise InvalidAutocomplete(f'no autocomplete with name {self.autocomplete_name} registered for {model.__name__}')
+            attrs['data-choices-js-autocomplete'] = path_config.path
         return attrs
 
     def optgroups(self, name, value, attrs=None):
@@ -81,3 +94,8 @@ class ChoicesJSModelSelect(ChoicesJsModelMixin, django.forms.Select):
 
 class ChoicesJSModelSelectMultiple(ChoicesJsModelMixin, django.forms.SelectMultiple):
     pass
+
+
+class InvalidAutocomplete(Exception):
+    def __init__(self, message):
+        self.message = message

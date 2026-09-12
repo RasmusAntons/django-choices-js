@@ -3,6 +3,7 @@ from django_choices_js import autocomplete_model
 
 
 @autocomplete_model(fields=['name'])
+@autocomplete_model(fields={'name': ['istartswith']}, name='prefix')
 class Item(models.Model):
     name = models.CharField(max_length=100)
 

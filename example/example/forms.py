@@ -22,6 +22,6 @@ class CollectionForm(django.forms.ModelForm):
         fields = '__all__'
         widgets = {
             'name': django_choices_js.ChoicesJsTextInput(choices_opts={'maxItemCount': 1}),
-            'primary': django_choices_js.ChoicesJSModelSelect,
+            'primary': django_choices_js.ChoicesJSModelSelect(autocomplete_name='prefix'),
             'items': django_choices_js.ChoicesJSModelSelectMultiple
         }

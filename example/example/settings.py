@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
-from django.conf.global_settings import STATIC_ROOT
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,7 +26,7 @@ SECRET_KEY = "django-insecure-+#&=8cvqg!ok%$&7t(!(!&!u9&prerv9@hrh860t^en9@7y4ca
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://django-choices-js.3po.ch']
+CSRF_TRUSTED_ORIGINS = ['https://enigmatics.3po.ch']
 
 
 # Application definition
