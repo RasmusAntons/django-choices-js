@@ -29,3 +29,14 @@ Add ``django_choices_js.urls`` to your URL configuration:
         # ...
         path("django_choices_js/", include("django_choices_js.urls")),
     ]
+
+
+Development
+===========
+
+To run the example app in development mode, run
+
+.. code-block:: python
+
+    podman compose -f compose.yml -f compose.dev.yml build
+    podman compose -f compose.yml -f compose.dev.yml up -d && podman compose -f compose.yml -f compose.dev.yml logs -f

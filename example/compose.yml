@@ -3,6 +3,6 @@ services:
     restart: always
     build:
       context: ..
-      dockerfile: example/Dockerfile
+      dockerfile: example/Containerfile
     ports:
       - "8000:8000"

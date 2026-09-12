@@ -22,12 +22,12 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "django >= 5.1, < 6",
+    "django >= 6, < 7",
 ]
 
 [project.optional-dependencies]
 docs = [
-    "sphinx >= 8, < 9"
+    "sphinx >= 9, < 10"
 ]
 
 [project.urls]

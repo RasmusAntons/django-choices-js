@@ -1,0 +1,7 @@
+services:
+  example:
+    build:
+      context: ..
+      dockerfile: example/Containerfile.dev
+    volumes:
+      - ..:/app
